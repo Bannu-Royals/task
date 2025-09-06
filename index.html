@@ -1,79 +1,432 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Task: Admin & Student Dashboard (Uncopyable)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Task: Admin & Student Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    /* Modern Color Palette with Emerald */
+    :root {
+      --emerald: #10b981;
+      --emerald-light: #34d399;
+      --emerald-dark: #059669;
+      --emerald-bright: #10b981;
+      --background: #f8fafc;
+      --surface: #ffffff;
+      --text-primary: #1f2937;
+      --text-secondary: #6b7280;
+      --border: #e5e7eb;
+      --card-bg: rgba(255, 255, 255, 0.9);
+      --shadow: rgba(0, 0, 0, 0.05);
+    }
+
+    /* Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      background: var(--background);
+      color: var(--text-primary);
+      padding: 20px;
+      margin: 0;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
     /* Layout */
-    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;line-height:1.45;margin:0;background:#f6f8fb;color:#0f172a;padding:40px}
-    .container{max-width:900px;margin:0 auto;background:#fff;border-radius:12px;padding:28px;box-shadow:0 6px 24px rgba(16,24,40,0.08)}
-    h1{font-size:20px;margin:0 0 8px}
-    h2{font-size:16px;margin:18px 0 8px;color:#0b61d6}
-    p, ul{margin:8px 0}
-    ul{padding-left:1.25rem}
-    .meta{font-size:13px;color:#475569}
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 10px 30px var(--shadow);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px var(--shadow);
+    }
+
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--emerald), var(--emerald-light));
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin: 0 0 20px;
+      color: var(--emerald);
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 10px;
+    }
+
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 70px;
+      height: 4px;
+      background: var(--emerald);
+      border-radius: 2px;
+    }
+
+    h2 {
+      font-size: 22px;
+      margin: 30px 0 20px;
+      color: var(--emerald-dark);
+      font-weight: 600;
+      padding-left: 20px;
+      border-left: 4px solid var(--emerald);
+      transition: all 0.3s ease;
+    }
+
+    h2:hover {
+      padding-left: 25px;
+      color: var(--emerald);
+    }
+
+    p, ul {
+      margin: 18px 0;
+      color: var(--text-secondary);
+    }
+
+    ul {
+      padding-left: 1.8rem;
+    }
+
+    li {
+      margin-bottom: 14px;
+      position: relative;
+      transition: transform 0.2s ease;
+    }
+
+    li:hover {
+      transform: translateX(8px);
+    }
+
+    li::marker {
+      color: var(--emerald);
+    }
+
+    .meta {
+      font-size: 16px;
+      color: var(--text-secondary);
+      background: rgba(16, 185, 129, 0.05);
+      padding: 22px;
+      border-radius: 16px;
+      border-left: 4px solid var(--emerald);
+      margin: 25px 0;
+    }
+
+    /* Two-column layout */
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin: 30px 0;
+    }
+
+    @media (max-width: 900px) {
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .column {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 5px 15px var(--shadow);
+      transition: all 0.3s ease;
+      border: 1px solid var(--border);
+    }
+
+    .column:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px var(--shadow);
+    }
 
     /* Make the visible text non-selectable */
     .nocopy,
-    .nocopy *{
-      -webkit-user-select: none; /* Safari */
-      -moz-user-select: none;    /* Firefox */
-      -ms-user-select: none;     /* IE10+/Edge */
-      user-select: none;         /* Standard */
-      -webkit-touch-callout: none; /* iOS Safari */
+    .nocopy * {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
     }
 
-    /* subtle clickable admin card */
-    .card{border:1px solid #e6edf3;padding:14px;border-radius:10px;margin-top:12px}
-    .stat{font-weight:700;font-size:24px}
+    /* Elegant card design */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 28px;
+      border-radius: 16px;
+      margin-top: 25px;
+      box-shadow: 0 5px 15px var(--shadow);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
 
-    /* small helper footer */
-    footer{font-size:12px;color:#64748b;margin-top:18px}
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px var(--shadow);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.03) 0%, rgba(52, 211, 153, 0.03) 100%);
+      z-index: 0;
+    }
+
+    .stat {
+      font-weight: 700;
+      font-size: 32px;
+      color: var(--emerald);
+      margin-bottom: 15px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Small helper footer */
+    footer {
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-top: 40px;
+      padding-top: 25px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    /* Decorative elements */
+    .decorative-circle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.08;
+      z-index: 0;
+    }
+
+    .circle-1 {
+      width: 250px;
+      height: 250px;
+      top: -125px;
+      right: -125px;
+      background: var(--emerald);
+    }
+
+    .circle-2 {
+      width: 200px;
+      height: 200px;
+      bottom: -100px;
+      left: -100px;
+      background: var(--emerald);
+    }
+
+    /* Animation for list items */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-item {
+      animation: fadeInUp 0.6s ease forwards;
+      opacity: 0;
+    }
+
+    /* Scroll effects */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      body {
+        padding: 15px;
+      }
+      
+      .container {
+        margin: 15px;
+        padding: 30px 20px;
+        border-radius: 20px;
+      }
+      
+      h1 {
+        font-size: 26px;
+      }
+      
+      h2 {
+        font-size: 20px;
+      }
+      
+      .card {
+        padding: 20px;
+      }
+      
+      .two-column {
+        gap: 20px;
+      }
+      
+      .column {
+        padding: 20px;
+      }
+    }
+
+    /* Icon styling */
+    .icon {
+      margin-right: 12px;
+      color: var(--emerald);
+    }
+
+    /* Enhanced ordered list */
+    ol {
+      list-style-type: none;
+      counter-reset: custom-counter;
+      padding-left: 0;
+    }
+
+    ol li {
+      counter-increment: custom-counter;
+      margin-bottom: 22px;
+      padding-left: 60px;
+      position: relative;
+    }
+
+    ol li::before {
+      content: counter(custom-counter);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 40px;
+      height: 40px;
+      background: var(--emerald);
+      color: white;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 18px;
+      box-shadow: 0 5px 15px rgba(16, 185, 129, 0.2);
+    }
+
+    /* Button styles */
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background: var(--emerald);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(16, 185, 129, 0.2);
+      margin-top: 15px;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+      background: var(--emerald-dark);
+    }
   </style>
 </head>
 <body>
+  <!-- Decorative background elements -->
+  <div class="decorative-circle circle-1"></div>
+  <div class="decorative-circle circle-2"></div>
+
   <main class="container">
     <section class="nocopy">
-      <h1>📌 Task: Build a Simple Admin & Student Dashboard System</h1>
-      <p class="meta">Objective: Design and implement a web application that provides an Admin Dashboard for managing announcements and viewing student statistics, and a Student Dashboard for registered students to view announcements.</p>
+      <h1><i class="fas fa-tasks icon"></i> Task: Build a Simple Admin & Student Dashboard System</h1>
+      <p class="meta fade-in">Objective: Design and implement a web application that provides an Admin Dashboard for managing announcements and viewing student statistics, and a Student Dashboard for registered students to view announcements.</p>
 
-      <h2>🛠 Functional Requirements (Admin)</h2>
-      <ul>
-        <li>Display the <strong>total number of registered students</strong>.</li>
-        <li>Provide functionality to <strong>create, edit, and delete announcements</strong>.</li>
-        <li>Each announcement should include: Title, Description/Message, and an auto-generated Date.</li>
-      </ul>
+      <div class="two-column">
+        <div class="column">
+          <h2 class="fade-in"><i class="fas fa-user-cog icon"></i> Functional Requirements (Admin)</h2>
+          <ul>
+            <li class="animate-item" style="animation-delay: 0.1s;">Display the <strong>total number of registered students</strong>.</li>
+            <li class="animate-item" style="animation-delay: 0.2s;">Provide functionality to <strong>create, edit, and delete announcements</strong>.</li>
+            <li class="animate-item" style="animation-delay: 0.3s;">Each announcement should include: Title, Description/Message, and an auto-generated Date.</li>
+          </ul>
+        </div>
 
-      <h2>🛠 Functional Requirements (Student)</h2>
-      <ul>
-        <li>Students must be able to <strong>register/login</strong>.</li>
-        <li>Display the list of admin-created announcements (latest first).</li>
-      </ul>
-
-      <h2>📂 Expected Features & Flow</h2>
-      <ol>
-        <li>At least two roles: <em>Admin</em> and <em>Student</em>.</li>
-        <li>Students register/login to access their dashboard.</li>
-        <li>Admin can add, edit, and delete announcements; updates reflect instantly for students.</li>
-        <li>Store data in any DB (MySQL, MongoDB, Firebase, etc.).</li>
-        <li>Keep the frontend simple and user-friendly.</li>
-      </ol>
-
-      <h2>💻 Technical Expectations</h2>
-      <p>Any tech stack is acceptable (MERN, Django, Spring Boot, PHP...). Focus on authentication, CRUD operations for announcements, and separate admin/student dashboards.</p>
-
-      <h2>🎨 Suggested UI Elements</h2>
-      <div class="card">
-        <div class="stat">Total Registered Students: <span aria-hidden="true">X</span></div>
-        <p style="margin:6px 0 0">Announcements list with Edit / Delete controls and a form to create new announcements.</p>
+        <div class="column">
+          <h2 class="fade-in"><i class="fas fa-user-graduate icon"></i> Functional Requirements (Student)</h2>
+          <ul>
+            <li class="animate-item" style="animation-delay: 0.4s;">Students must be able to <strong>register/login</strong>.</li>
+            <li class="animate-item" style="animation-delay: 0.5s;">Display the list of admin-created announcements (latest first).</li>
+            <li class="animate-item" style="animation-delay: 0.6s;">User-friendly interface with clear navigation.</li>
+            <li class="animate-item" style="animation-delay: 0.7s;">Responsive design for all device sizes.</li>
+          </ul>
+        </div>
       </div>
 
-      <h2>📌 Deliverables</h2>
+      <h2 class="fade-in"><i class="fas fa-folder-open icon"></i> Expected Features & Flow</h2>
+      <ol>
+        <li class="animate-item" style="animation-delay: 0.6s;">At least two roles: <em>Admin</em> and <em>Student</em>.</li>
+        <li class="animate-item" style="animation-delay: 0.7s;">Students register/login to access their dashboard.</li>
+        <li class="animate-item" style="animation-delay: 0.8s;">Admin can add, edit, and delete announcements; updates reflect instantly for students.</li>
+        <li class="animate-item" style="animation-delay: 0.9s;">Store data in any DB (MySQL, MongoDB, Firebase, etc.).</li>
+        <li class="animate-item" style="animation-delay: 1.0s;">Keep the frontend simple and user-friendly.</li>
+      </ol>
+
+      <h2 class="fade-in"><i class="fas fa-laptop-code icon"></i> Technical Expectations</h2>
+      <p class="fade-in">Any tech stack is acceptable (MERN, Django, Spring Boot, PHP...). Focus on authentication, CRUD operations for announcements, and separate admin/student dashboards.</p>
+
+      <h2 class="fade-in"><i class="fas fa-palette icon"></i> Suggested UI Elements</h2>
+      <div class="card fade-in">
+        <div class="stat">Total Registered Students: <span aria-hidden="true">X</span></div>
+        <p style="margin:15px 0">Announcements list with Edit / Delete controls and a form to create new announcements.</p>
+        <button class="btn">Create New Announcement</button>
+      </div>
+
+      <h2 class="fade-in"><i class="fas fa-clipboard-list icon"></i> Deliverables</h2>
       <ul>
-        <li>Working application with separate Admin and Student dashboards.</li>
-        <li>Source code repository (GitHub/GitLab).</li>
-        <li>README with setup instructions.</li>
+        <li class="animate-item" style="animation-delay: 1.1s;">Working application with separate Admin and Student dashboards.</li>
+        <li class="animate-item" style="animation-delay: 1.2s;">Source code repository (GitHub/GitLab).</li>
+        <li class="animate-item" style="animation-delay: 1.3s;">README with setup instructions.</li>
+        <li class="animate-item" style="animation-delay: 1.4s;">Live demo (if possible).</li>
       </ul>
 
       <footer>Tip: This page disables copying/selection — if you are testing, use the developer tools to view the source.</footer>
@@ -105,6 +458,40 @@
     window.addEventListener('touchstart', function(e){
       if (e.touches && e.touches.length > 1) e.preventDefault();
     }, {passive:false});
+
+    // Scroll animation for fade-in elements
+    document.addEventListener('DOMContentLoaded', function() {
+      const fadeElements = document.querySelectorAll('.fade-in');
+      
+      const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      fadeElements.forEach(element => {
+        fadeObserver.observe(element);
+      });
+      
+      // Animate list items with delays
+      const animateItems = document.querySelectorAll('.animate-item');
+      animateItems.forEach(item => {
+        item.style.visibility = 'visible';
+      });
+      
+      // Add hover effect to buttons
+      const buttons = document.querySelectorAll('.btn');
+      buttons.forEach(button => {
+        button.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-3px)';
+        });
+        button.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0)';
+        });
+      });
+    });
   </script>
 </body>
 </html>
