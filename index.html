@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Task: Admin & Student Dashboard (Uncopyable)</title>
+  <style>
+    /* Layout */
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;line-height:1.45;margin:0;background:#f6f8fb;color:#0f172a;padding:40px}
+    .container{max-width:900px;margin:0 auto;background:#fff;border-radius:12px;padding:28px;box-shadow:0 6px 24px rgba(16,24,40,0.08)}
+    h1{font-size:20px;margin:0 0 8px}
+    h2{font-size:16px;margin:18px 0 8px;color:#0b61d6}
+    p, ul{margin:8px 0}
+    ul{padding-left:1.25rem}
+    .meta{font-size:13px;color:#475569}
+
+    /* Make the visible text non-selectable */
+    .nocopy,
+    .nocopy *{
+      -webkit-user-select: none; /* Safari */
+      -moz-user-select: none;    /* Firefox */
+      -ms-user-select: none;     /* IE10+/Edge */
+      user-select: none;         /* Standard */
+      -webkit-touch-callout: none; /* iOS Safari */
+    }
+
+    /* subtle clickable admin card */
+    .card{border:1px solid #e6edf3;padding:14px;border-radius:10px;margin-top:12px}
+    .stat{font-weight:700;font-size:24px}
+
+    /* small helper footer */
+    footer{font-size:12px;color:#64748b;margin-top:18px}
+  </style>
+</head>
+<body>
+  <main class="container">
+    <section class="nocopy">
+      <h1>📌 Task: Build a Simple Admin & Student Dashboard System</h1>
+      <p class="meta">Objective: Design and implement a web application that provides an Admin Dashboard for managing announcements and viewing student statistics, and a Student Dashboard for registered students to view announcements.</p>
+
+      <h2>🛠 Functional Requirements (Admin)</h2>
+      <ul>
+        <li>Display the <strong>total number of registered students</strong>.</li>
+        <li>Provide functionality to <strong>create, edit, and delete announcements</strong>.</li>
+        <li>Each announcement should include: Title, Description/Message, and an auto-generated Date.</li>
+      </ul>
+
+      <h2>🛠 Functional Requirements (Student)</h2>
+      <ul>
+        <li>Students must be able to <strong>register/login</strong>.</li>
+        <li>Display the list of admin-created announcements (latest first).</li>
+      </ul>
+
+      <h2>📂 Expected Features & Flow</h2>
+      <ol>
+        <li>At least two roles: <em>Admin</em> and <em>Student</em>.</li>
+        <li>Students register/login to access their dashboard.</li>
+        <li>Admin can add, edit, and delete announcements; updates reflect instantly for students.</li>
+        <li>Store data in any DB (MySQL, MongoDB, Firebase, etc.).</li>
+        <li>Keep the frontend simple and user-friendly.</li>
+      </ol>
+
+      <h2>💻 Technical Expectations</h2>
+      <p>Any tech stack is acceptable (MERN, Django, Spring Boot, PHP...). Focus on authentication, CRUD operations for announcements, and separate admin/student dashboards.</p>
+
+      <h2>🎨 Suggested UI Elements</h2>
+      <div class="card">
+        <div class="stat">Total Registered Students: <span aria-hidden="true">X</span></div>
+        <p style="margin:6px 0 0">Announcements list with Edit / Delete controls and a form to create new announcements.</p>
+      </div>
+
+      <h2>📌 Deliverables</h2>
+      <ul>
+        <li>Working application with separate Admin and Student dashboards.</li>
+        <li>Source code repository (GitHub/GitLab).</li>
+        <li>README with setup instructions.</li>
+      </ul>
+
+      <footer>Tip: This page disables copying/selection — if you are testing, use the developer tools to view the source.</footer>
+    </section>
+  </main>
+
+  <script>
+    // Prevent common copy/selection actions
+    document.addEventListener('copy', function(e){ e.preventDefault(); });
+    document.addEventListener('cut', function(e){ e.preventDefault(); });
+    document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+    document.addEventListener('selectstart', function(e){ e.preventDefault(); });
+
+    // Clear selection on selectionchange (defensive)
+    document.addEventListener('selectionchange', function(){
+      var sel = window.getSelection(); if(sel) sel.removeAllRanges();
+    });
+
+    // Block common keyboard shortcuts: Ctrl/Cmd + C, X, A, U
+    document.addEventListener('keydown', function(e){
+      if ((e.ctrlKey || e.metaKey) && ['c','x','a','u','s','p'].includes(e.key.toLowerCase())) {
+        e.preventDefault();
+      }
+      // Block Print Screen (some browsers) and F12 devtools attempt
+      if (e.key === 'F12') e.preventDefault();
+    });
+
+    // For mobile long-press: prevent touch callout already handled by CSS, but extra precaution:
+    window.addEventListener('touchstart', function(e){
+      if (e.touches && e.touches.length > 1) e.preventDefault();
+    }, {passive:false});
+  </script>
+</body>
+</html>
