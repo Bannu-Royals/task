@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -105,7 +106,8 @@
       color: var(--emerald);
     }
 
-    p, ul {
+    p,
+    ul {
       margin: 18px 0;
       color: var(--text-secondary);
     }
@@ -254,6 +256,7 @@
         opacity: 0;
         transform: translateY(20px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
@@ -282,29 +285,29 @@
       body {
         padding: 15px;
       }
-      
+
       .container {
         margin: 15px;
         padding: 30px 20px;
         border-radius: 20px;
       }
-      
+
       h1 {
         font-size: 26px;
       }
-      
+
       h2 {
         font-size: 20px;
       }
-      
+
       .card {
         padding: 20px;
       }
-      
+
       .two-column {
         gap: 20px;
       }
-      
+
       .column {
         padding: 20px;
       }
@@ -371,6 +374,7 @@
     }
   </style>
 </head>
+
 <body>
   <!-- Decorative background elements -->
   <div class="decorative-circle circle-1"></div>
@@ -379,23 +383,30 @@
   <main class="container">
     <section class="nocopy">
       <h1><i class="fas fa-tasks icon"></i> Task: Build a Simple and basic Admin & Student Dashboard System</h1>
-      <p class="meta fade-in">Objective: Design and implement a web application that provides an Admin Dashboard for managing announcements and viewing student statistics, and a Student Dashboard for registered students to view announcements.</p>
+      <p class="meta fade-in">Objective: Design and implement a web application that provides an Admin Dashboard for
+        managing announcements and viewing student statistics, and a Student Dashboard for registered students to view
+        announcements.</p>
 
       <div class="two-column">
         <div class="column">
           <h2 class="fade-in"><i class="fas fa-user-cog icon"></i> Functional Requirements (Admin)</h2>
           <ul>
-            <li class="animate-item" style="animation-delay: 0.1s;">Display the <strong>total number of registered students</strong>.</li>
-            <li class="animate-item" style="animation-delay: 0.2s;">Provide functionality to <strong>create, edit, and delete announcements</strong>.</li>
-            <li class="animate-item" style="animation-delay: 0.3s;">Each announcement should include: Title, Description/Message, and an auto-generated Date.</li>
+            <li class="animate-item" style="animation-delay: 0.1s;">Display the <strong>total number of registered
+                students</strong>.</li>
+            <li class="animate-item" style="animation-delay: 0.2s;">Provide functionality to <strong>create, edit, and
+                delete announcements</strong>.</li>
+            <li class="animate-item" style="animation-delay: 0.3s;">Each announcement should include: Title,
+              Description/Message, and an auto-generated Date.</li>
           </ul>
         </div>
 
         <div class="column">
           <h2 class="fade-in"><i class="fas fa-user-graduate icon"></i> Functional Requirements (Student)</h2>
           <ul>
-            <li class="animate-item" style="animation-delay: 0.4s;">Students must be able to <strong>register/login</strong>.</li>
-            <li class="animate-item" style="animation-delay: 0.5s;">Display the list of admin-created announcements (latest first).</li>
+            <li class="animate-item" style="animation-delay: 0.4s;">Students must be able to
+              <strong>register/login</strong>.</li>
+            <li class="animate-item" style="animation-delay: 0.5s;">Display the list of admin-created announcements
+              (latest first).</li>
             <li class="animate-item" style="animation-delay: 0.6s;">User-friendly interface with clear navigation.</li>
             <li class="animate-item" style="animation-delay: 0.7s;">Responsive design for all device sizes.</li>
           </ul>
@@ -404,50 +415,57 @@
 
       <h2 class="fade-in"><i class="fas fa-folder-open icon"></i> Expected Features & Flow</h2>
       <ol>
-        <li class="animate-item" style="animation-delay: 0.6s;">At least two roles: <em>Admin</em> and <em>Student</em>.</li>
+        <li class="animate-item" style="animation-delay: 0.6s;">At least two roles: <em>Admin</em> and <em>Student</em>.
+        </li>
         <li class="animate-item" style="animation-delay: 0.7s;">Students register/login to access their dashboard.</li>
-        <li class="animate-item" style="animation-delay: 0.8s;">Admin can add, edit, and delete announcements; updates reflect instantly for students.</li>
-        <li class="animate-item" style="animation-delay: 0.9s;">Store data in any DB (MySQL, MongoDB, Firebase, etc.).</li>
+        <li class="animate-item" style="animation-delay: 0.8s;">Admin can add, edit, and delete announcements; updates
+          reflect instantly for students.</li>
+        <li class="animate-item" style="animation-delay: 0.9s;">Store data in any DB (MySQL, MongoDB, Firebase, etc.).
+        </li>
         <li class="animate-item" style="animation-delay: 1.0s;">Keep the frontend simple and user-friendly.</li>
       </ol>
 
       <h2 class="fade-in"><i class="fas fa-laptop-code icon"></i> Technical Expectations</h2>
-      <p class="fade-in">Any tech stack is acceptable (MERN, Django, Spring Boot, PHP...). Focus on authentication, CRUD operations for announcements, and separate admin/student dashboards.</p>
+      <p class="fade-in">Any tech stack is acceptable (MERN, Django, Spring Boot, PHP etc...). Focus on authentication,
+        CRUD operations for announcements, and separate admin/student dashboards.</p>
 
       <h2 class="fade-in"><i class="fas fa-palette icon"></i> Suggested UI Elements</h2>
       <div class="card fade-in">
         <div class="stat">Total Registered Students: <span aria-hidden="true">X</span></div>
-        <p style="margin:15px 0">Announcements list with Edit / Delete controls and a form to create new announcements.</p>
+        <p style="margin:15px 0">Announcements list with Edit / Delete controls and a form to create new announcements.
+        </p>
         <button class="btn">Create New Announcement</button>
       </div>
 
       <h2 class="fade-in"><i class="fas fa-clipboard-list icon"></i> Deliverables</h2>
       <ul>
-        <li class="animate-item" style="animation-delay: 1.1s;">Working application with separate Admin and Student dashboards.</li>
+        <li class="animate-item" style="animation-delay: 1.1s;">Working application with separate Admin and Student
+          dashboards.</li>
         <li class="animate-item" style="animation-delay: 1.2s;">Source code repository (GitHub/GitLab).</li>
         <li class="animate-item" style="animation-delay: 1.3s;">README with setup instructions.</li>
         <li class="animate-item" style="animation-delay: 1.4s;">Live demo (if possible).</li>
       </ul>
 
-      <footer>Tip: This page disables copying/selection — if you are testing, use the developer tools to view the source.</footer>
+      <footer>Tip: This page disables copying/selection — if you are testing, use the developer tools to view the
+        source.</footer>
     </section>
   </main>
 
   <script>
     // Prevent common copy/selection actions
-    document.addEventListener('copy', function(e){ e.preventDefault(); });
-    document.addEventListener('cut', function(e){ e.preventDefault(); });
-    document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
-    document.addEventListener('selectstart', function(e){ e.preventDefault(); });
+    document.addEventListener('copy', function (e) { e.preventDefault(); });
+    document.addEventListener('cut', function (e) { e.preventDefault(); });
+    document.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+    document.addEventListener('selectstart', function (e) { e.preventDefault(); });
 
     // Clear selection on selectionchange (defensive)
-    document.addEventListener('selectionchange', function(){
-      var sel = window.getSelection(); if(sel) sel.removeAllRanges();
+    document.addEventListener('selectionchange', function () {
+      var sel = window.getSelection(); if (sel) sel.removeAllRanges();
     });
 
     // Block common keyboard shortcuts: Ctrl/Cmd + C, X, A, U
-    document.addEventListener('keydown', function(e){
-      if ((e.ctrlKey || e.metaKey) && ['c','x','a','u','s','p'].includes(e.key.toLowerCase())) {
+    document.addEventListener('keydown', function (e) {
+      if ((e.ctrlKey || e.metaKey) && ['c', 'x', 'a', 'u', 's', 'p'].includes(e.key.toLowerCase())) {
         e.preventDefault();
       }
       // Block Print Screen (some browsers) and F12 devtools attempt
@@ -455,14 +473,14 @@
     });
 
     // For mobile long-press: prevent touch callout already handled by CSS, but extra precaution:
-    window.addEventListener('touchstart', function(e){
+    window.addEventListener('touchstart', function (e) {
       if (e.touches && e.touches.length > 1) e.preventDefault();
-    }, {passive:false});
+    }, { passive: false });
 
     // Scroll animation for fade-in elements
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const fadeElements = document.querySelectorAll('.fade-in');
-      
+
       const fadeObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -470,28 +488,29 @@
           }
         });
       }, { threshold: 0.1 });
-      
+
       fadeElements.forEach(element => {
         fadeObserver.observe(element);
       });
-      
+
       // Animate list items with delays
       const animateItems = document.querySelectorAll('.animate-item');
       animateItems.forEach(item => {
         item.style.visibility = 'visible';
       });
-      
+
       // Add hover effect to buttons
       const buttons = document.querySelectorAll('.btn');
       buttons.forEach(button => {
-        button.addEventListener('mouseenter', function() {
+        button.addEventListener('mouseenter', function () {
           this.style.transform = 'translateY(-3px)';
         });
-        button.addEventListener('mouseleave', function() {
+        button.addEventListener('mouseleave', function () {
           this.style.transform = 'translateY(0)';
         });
       });
     });
   </script>
 </body>
+
 </html>
